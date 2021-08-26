@@ -1,0 +1,33 @@
+{
+  "name": "p2-g3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "jest --watch",
+    "mon": "nodemon server.js",
+    "start": "node server.js",
+    "seed": "node db/seeds/seed.js",
+    "setup": "node db/initDB.js && node db/seeds/seed.js"
+  },
+  "keywords": [],
+  "author": "Thara Supasiti",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "connect-session-sequelize": "^7.0.4",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-session": "^1.17.1",
+    "mysql2": "^2.2.5",
+    "sequelize": "^6.3.5"
+  },
+  "devDependencies": {
+    "eslint": "^7.12.1",
+    "eslint-config-prettier": "^6.15.0",
+    "prettier": "^2.1.2",
+    "jest": "^27.0.6",
+    "nodemon": "^2.0.12"
+  }
+}
