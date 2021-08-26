@@ -11,7 +11,7 @@
     "setup": "node db/initDB.js && node db/seeds/seed.js"
   },
   "keywords": [],
-  "author": "Thara Supasiti",
+  "author": " Nick Lee, Irene Adam Manik, Thara Supasiti",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.0",
