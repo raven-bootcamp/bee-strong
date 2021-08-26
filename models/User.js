@@ -11,13 +11,6 @@ User.init(
       autoIncrement: true,
       allowNull: false,
     },
-    username: {
-      type: DataTypes.STRING(60),
-      allowNull: false,
-      validate: {
-        isAlphanumeric: true,
-      },
-    },
     email: {
       type: DataTypes.STRING(60),
       allowNull: false,
