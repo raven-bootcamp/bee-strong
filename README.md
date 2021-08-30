@@ -49,7 +49,7 @@ When I click Yes to delete my account
 Then all my fitness content is deleted as well
 And I am logged out of the application
 ```
-```
+```gherkin
 Given I am a fitness student
 When I view the Bee Strong website
 Then I am shown a splash page with the ability to create an account
@@ -68,7 +68,6 @@ When I click on the Delete Account button
 Then I will be shown a confirmation window about deleting my account
 When I click Yes to delete my account
 Then I am logged out of the application
-
 ```
 ## Technologies Used
 
