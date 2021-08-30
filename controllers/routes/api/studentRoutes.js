@@ -15,8 +15,20 @@ const getAllStudents = async (req, res) => {
   }
 };
 
+// create student account
+const createAccount = async (req, res) => {
+  try {
+    const rawStudent = await services.student.create(req.body);
+    const cleanedStudent = sanitize(rawStudent);
+    res.status(200).json(cleanedStudent);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 // router
 
 router.get("/", getAllStudents);
+router.post("/signup", createAccount);
 
 module.exports = router;
