@@ -1,4 +1,6 @@
 const models = require("../../models");
+const sanitize = require("./sanitize");
+const bcrypt = require("bcrypt");
 
 // get all users
 // return
@@ -10,6 +12,22 @@ const getAll = async () => {
   return result;
 };
 
+// authenticate a user login
+// argument: { email, password }
+// return - int (id) or null
+const authenticate = async (cred) => {
+  const savedUser = await models.User.findOne({
+    where: { email: cred.email },
+  });
+  const isValid = await bcrypt.compare(cred.password, savedUser.password);
+  if (!isValid) return null;
+
+  const userWithPassword = sanitize(savedUser);
+  const { password, ...userWithoutPassword } = userWithPassword;
+  return userWithoutPassword;
+};
+
 module.exports = {
+  authenticate,
   getAll,
 };
