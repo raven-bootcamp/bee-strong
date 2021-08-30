@@ -25,7 +25,7 @@ const getAllUsers = async (req, res) => {
 };
 
 // log a user in
-const loginUser = async (req, res) => {
+const logUserIn = async (req, res) => {
   try {
     const userData = await services.user.authenticate(req.body);
     if (!userData) {
@@ -39,9 +39,21 @@ const loginUser = async (req, res) => {
   }
 };
 
+// log a user out
+const logUserOut = (req, res) => {
+  if (req.session.logged_in) {
+    req.session.destroy(() => {
+      res.status(204).end();
+    });
+  } else {
+    res.status(404).end();
+  }
+};
+
 // router
 
 router.get("/", getAllUsers);
-router.post("/login", loginUser);
+router.post("/login", logUserIn);
+router.post("/logout", logUserOut);
 
 module.exports = router;
