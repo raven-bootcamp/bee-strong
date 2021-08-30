@@ -2,12 +2,12 @@ const router = require("express").Router();
 const services = require("../../services");
 const sanitize = require("../../services/sanitize");
 
-// Route : api/users/
+// Route : api/students/
 
-// get all users
-const getAllUsers = async (req, res) => {
+// get all students
+const getAllStudents = async (req, res) => {
   try {
-    const rawUsers = await services.user.getAll();
+    const rawUsers = await services.student.getAll();
     const cleanedUsers = sanitize(rawUsers);
     res.status(200).json(cleanedUsers);
   } catch (err) {
@@ -17,6 +17,6 @@ const getAllUsers = async (req, res) => {
 
 // router
 
-router.get("/", getAllUsers);
+router.get("/", getAllStudents);
 
 module.exports = router;

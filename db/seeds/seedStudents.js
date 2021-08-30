@@ -3,15 +3,15 @@ const models = require("../../models");
 const data = [
   {
     student_name: "Sal",
-    id: 1,
+    user_id: 1,
   },
   {
     student_name: "Lernantino",
-    id: 2,
+    user_id: 2,
   },
   {
     student_name: "Jordan",
-    id: 4,
+    user_id: 4,
   },
 ];
 

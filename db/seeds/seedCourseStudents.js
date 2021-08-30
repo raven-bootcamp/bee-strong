@@ -14,7 +14,7 @@ const data = [
     course_id: 1,
   },
   {
-    student_id: 4,
+    student_id: 3,
     course_id: 2,
   },
 ];
