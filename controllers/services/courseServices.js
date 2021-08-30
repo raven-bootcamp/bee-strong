@@ -4,6 +4,9 @@ const sanitize = require("./sanitize");
 const { filterObjectByKeys } = require("../utils/object");
 const acceptedKeys = ["course_name", "active", "instructor_id"];
 
+// --------------------------------------------------------------------------------------
+//   Get All with filter
+
 // filter the courses according to some filters and return ids
 // return Array<int>
 const getFilteredIds = async (rawFilter) => {
@@ -33,7 +36,7 @@ const getFilteredIds = async (rawFilter) => {
   return courses.map(({ id }) => id);
 };
 
-// get all courses filtered by filter object
+// get all courses filtered by filter
 const getAll = async (rawFilter) => {
   const ids = await getFilteredIds(rawFilter);
   const result = await models.Course.findAll({
@@ -43,6 +46,31 @@ const getAll = async (rawFilter) => {
   return result;
 };
 
+// --------------------------------------------------------------------------------------
+//  get one
+
+// get one full course
+// argument: courseId
+const getOne = async (courseId) => {
+  const result = await models.Course.findOne({
+    where: { id: courseId },
+    include: [models.Instructor, models.Tag],
+  });
+  return result;
+};
+
+// --------------------------------------------------------------------------------------
+//  create
+
+// create new course
+// argument: contain at least { course_name, instructor_id }
+const create = async (courseData) => {
+  const result = await models.Course.create(courseData);
+  return result;
+};
+
 module.exports = {
+  create,
   getAll,
+  getOne,
 };
