@@ -14,9 +14,7 @@ Tag.init(
     tag_name: {
       type: DataTypes.STRING(60),
       allowNull: false,
-      validate: {
-        isAlphanumeric: true,
-      },
+      unique: true,
     },
   },
   {

@@ -37,10 +37,20 @@ const getFullCourse = async (req, res) => {
   }
 };
 
+const deleteCourse = async (req, res) => {
+  try {
+    await services.course.remove(req.params.id);
+    res.status(200).json({ message: "deleting course is successful!" });
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 // router
 
 router.get("/", getAllCourses);
 router.post("/create", createNewCourse);
 router.get("/:id", getFullCourse);
+router.delete("/:id", deleteCourse);
 
 module.exports = router;

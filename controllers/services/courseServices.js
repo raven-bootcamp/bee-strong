@@ -69,8 +69,21 @@ const create = async (courseData) => {
   return result;
 };
 
+// --------------------------------------------------------------------------------------
+//  remove
+
+// remove a course
+// argument: courseId
+const remove = async (courseId) => {
+  const result = await models.Course.destroy({
+    where: { id: courseId },
+  });
+  return result;
+};
+
 module.exports = {
   create,
   getAll,
   getOne,
+  remove,
 };
