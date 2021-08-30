@@ -47,21 +47,17 @@ const getAll = async (rawFilter) => {
 };
 
 // --------------------------------------------------------------------------------------
-//  get one
-
 // get one full course
 // argument: courseId
 const getOne = async (courseId) => {
   const result = await models.Course.findOne({
     where: { id: courseId },
-    include: [models.Instructor, models.Tag],
+    include: [models.Instructor, models.Tag, models.Student],
   });
   return result;
 };
 
 // --------------------------------------------------------------------------------------
-//  create
-
 // create new course
 // argument: contain at least { course_name, instructor_id }
 const create = async (courseData) => {
@@ -70,8 +66,17 @@ const create = async (courseData) => {
 };
 
 // --------------------------------------------------------------------------------------
-//  remove
+// get students enrolled in the course
+// argument: courseId
+const getStudents = async (courseId) => {
+  const result = await models.Course.findOne({
+    where: { id: courseId },
+    include: [models.Student],
+  });
+  return result.students;
+};
 
+// --------------------------------------------------------------------------------------
 // remove a course
 // argument: courseId
 const remove = async (courseId) => {
@@ -85,5 +90,6 @@ module.exports = {
   create,
   getAll,
   getOne,
+  getStudents,
   remove,
 };
