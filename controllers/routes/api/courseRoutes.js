@@ -58,6 +58,22 @@ const getStudentList = async (req, res) => {
   }
 };
 
+// add or remove student from course
+const updateStudent = async (req, res) => {
+  try {
+    console.log("course routes: ", req.body);
+
+    if (req.body.add) {
+      await services.course.addStudent(req.body, req.params.id);
+      res.status(200).json({ message: "Student has been successfully added" });
+    }
+    await services.course.removeStudent(req.body, req.params.id);
+    res.status(200).json({ message: "Student has been successfully removed" });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 // router
 
 router.get("/", getAllCourses);
@@ -65,5 +81,6 @@ router.post("/create", createNewCourse);
 router.get("/:id", getFullCourse);
 router.delete("/:id", deleteCourse);
 router.get("/:id/students", getStudentList);
+router.post("/:id/students", updateStudent);
 
 module.exports = router;

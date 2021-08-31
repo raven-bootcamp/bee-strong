@@ -86,10 +86,49 @@ const remove = async (courseId) => {
   return result;
 };
 
+// --------------------------------------------------------------------------------------
+// add student to a course
+// argument:
+//  - student: { student_id}
+//  - courseId
+
+const getCourseStudents = async (courseId) => {
+  const result = await models.CourseStudent.findAll({
+    where: { courseId: courseId },
+  });
+  return result;
+};
+
+const createCourseStudent = async (course_id, student_id) => {
+  const newCourseStudent = { course_id, student_id };
+  const result = await models.CourseStudent.create(newCourseStudent);
+  return result;
+};
+
+const addStudent = async (student, courseId) => {
+  const { student_id } = student;
+  const courseStudents = await getCourseStudents(courseId);
+  const studentIds = courseStudents.map(({ studentId }) => studentId);
+
+  if (!studentIds.includes(student_id)) {
+    return await createCourseStudent(courseId, student_id);
+  }
+  return;
+};
+
+// --------------------------------------------------------------------------------------
+// remove student from a course
+// argument:
+//  - student: { student_id}
+//  - courseId
+const removeStudent = async (student, courseId) => {};
+
 module.exports = {
   create,
   getAll,
   getOne,
   getStudents,
   remove,
+  addStudent,
+  removeStudent,
 };
