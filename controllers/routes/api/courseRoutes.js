@@ -41,7 +41,7 @@ const getFullCourse = async (req, res) => {
 const deleteCourse = async (req, res) => {
   try {
     await services.course.remove(req.params.id);
-    res.status(200).json({ message: "deleting course is successful!" });
+    res.status(200).json({ message: "Course has been successfully deleted!" });
   } catch (err) {
     res.status(500).json(err);
   }
