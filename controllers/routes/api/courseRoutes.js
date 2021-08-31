@@ -4,7 +4,7 @@ const sanitize = require("../../services/sanitize");
 
 // Route : api/courses/
 
-// get all course
+// get all courses
 const getAllCourses = async (req, res) => {
   try {
     const rawCourses = await services.course.getAll(req.query);
@@ -90,7 +90,7 @@ const updateCourse = async (req, res) => {
 router.get("/", getAllCourses);
 router.post("/create", createNewCourse);
 router.get("/:id", getFullCourse);
-router.post("/:id", updateCourse);
+router.put("/:id", updateCourse);
 router.delete("/:id", deleteCourse);
 router.get("/:id/students", getStudentList);
 router.post("/:id/students", updateStudent);
