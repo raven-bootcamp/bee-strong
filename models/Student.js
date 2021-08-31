@@ -21,9 +21,6 @@ Student.init(
     student_name: {
       type: DataTypes.STRING(60),
       allowNull: false,
-      validate: {
-        isAlphanumeric: true,
-      },
     },
   },
   {

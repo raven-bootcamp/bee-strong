@@ -2,18 +2,23 @@
   <h2 class="h3 mb-3 fw-normal">Tell us about yourself</h2>
 
   <div class="col-md-6">
-    {{> checkBox text="I am an instructor" inputName="checkBoxInstructor"}}
+    {{> radio text="I am an instructor" inputName="checkBoxInstructor"
+      value="instructor"}}
   </div>
   
   <div class="col-md-6">
-    {{> checkBox text="I am a student" inputName="checkBoxStudent"}}
+    {{> radio text="I am a student" inputName="checkBoxStudent"
+      value="student"}}
   </div>
   
+  {{> textInput label="Name" type="text" inputName="name" 
+    placeholder="Bob YourUncle"}}
+
   {{> textInput 
-    label="Email" type="email" inputName="emailInput" 
+    label="Email" type="email" inputName="email" 
     placeholder="sample@email.com"}}
   
-  {{> textInput label="Password" type="password" inputName="passwordInput" 
+  {{> textInput label="Password" type="password" inputName="password" 
     placeholder="password"}}
 
   {{> button text="Sign up" type="submit"}}
