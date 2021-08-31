@@ -14,9 +14,6 @@ Course.init(
     course_name: {
       type: DataTypes.STRING(60),
       allowNull: false,
-      validate: {
-        isAlphanumeric: true,
-      },
     },
     instructor_id: {
       type: DataTypes.INTEGER,
