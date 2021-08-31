@@ -23,7 +23,7 @@ const logUserIn = async (event) => {
   });
 
   if (response.ok) {
-    console.log("Sucessful log in!");
+    alert("Sucessful log in!");
     // document.location.replace("/"); /////  NOT SURE WHERE TO GO
   } else {
     alert("Fail to log in ");
