@@ -74,11 +74,23 @@ const updateStudent = async (req, res) => {
   }
 };
 
+// create new course
+const updateCourse = async (req, res) => {
+  try {
+    const rawCourse = await services.course.update(req.body, req.params.id);
+    const cleanedCourse = sanitize(rawCourse);
+    res.status(200).json(cleanedCourse);
+  } catch (err) {
+    res.status(400).json(err);
+  }
+};
+
 // router
 
 router.get("/", getAllCourses);
 router.post("/create", createNewCourse);
 router.get("/:id", getFullCourse);
+router.post("/:id", updateCourse);
 router.delete("/:id", deleteCourse);
 router.get("/:id/students", getStudentList);
 router.post("/:id/students", updateStudent);
