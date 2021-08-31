@@ -119,9 +119,25 @@ const addStudent = async (student, courseId) => {
 // --------------------------------------------------------------------------------------
 // remove student from a course
 // argument:
-//  - student: { student_id}
+//  - student: { student_id }
 //  - courseId
-const removeStudent = async (student, courseId) => {};
+
+const removeCourseStudent = async (course_id, student_id) => {
+  const condition = { course_id, student_id };
+  const result = await models.CourseStudent.destroy({ where: condition });
+  return result;
+};
+
+const removeStudent = async (student, courseId) => {
+  const { student_id } = student;
+  const courseStudents = await getCourseStudents(courseId);
+  const studentIds = courseStudents.map(({ studentId }) => studentId);
+
+  if (studentIds.includes(student_id)) {
+    return await removeCourseStudent(courseId, student_id);
+  }
+  return;
+};
 
 module.exports = {
   create,
