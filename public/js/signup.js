@@ -4,7 +4,7 @@ const signUserUp = async (event) => {
   event.preventDefault();
 
   const getUserData = (form) => {
-    const textInputsEls = form.querySelectorAll(".form-control");
+    const textInputsEls = form.querySelectorAll("input");
     const result = [...textInputsEls].reduce((acc, input) => {
       const key = input.getAttribute("name");
       const value = input.value.trim();
@@ -14,17 +14,13 @@ const signUserUp = async (event) => {
   };
 
   const form = event.target.closest("form");
-  const radios = form.querySelectorAll(".form-check-input");
-  const checked = [...radios].filter((radio) => radio.checked)[0];
-  if (!checked) return;
-
   const userData = getUserData(form);
-  const clientType = checked.value;
-  const response = await fetch(`/api/${clientType}s/signup`, {
+  if (!"client" in userData) return;
+  const response = await fetch(`/api/${userData.client}s/signup`, {
     method: "POST",
     body: JSON.stringify({
       ...userData,
-      [`${clientType}_name`]: userData.name,
+      [`${userData.client}_name`]: userData.name,
     }),
     headers: { "Content-Type": "application/json" },
   });
