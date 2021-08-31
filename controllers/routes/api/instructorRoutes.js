@@ -2,12 +2,12 @@ const router = require("express").Router();
 const services = require("../../services");
 const sanitize = require("../../services/sanitize");
 
-// Route : api/students/
+// Route : api/instructors/
 
 // get all students
-const getAllStudents = async (req, res) => {
+const getAllInstructors = async (req, res) => {
   try {
-    const rawUsers = await services.student.getAll();
+    const rawUsers = await services.instructor.getAll();
     const cleanedUsers = sanitize(rawUsers);
     res.status(200).json(cleanedUsers);
   } catch (err) {
@@ -18,9 +18,9 @@ const getAllStudents = async (req, res) => {
 // create student account
 const createAccount = async (req, res) => {
   try {
-    const rawStudent = await services.student.create(req.body);
-    const cleanedStudent = sanitize(rawStudent);
-    res.status(200).json(cleanedStudent);
+    const rawInstructor = await services.instructor.create(req.body);
+    const cleanedInstructor = sanitize(rawInstructor);
+    res.status(200).json(cleanedInstructor);
   } catch (err) {
     res.status(500).json(err);
   }
@@ -28,7 +28,7 @@ const createAccount = async (req, res) => {
 
 // router
 
-router.get("/", getAllStudents);
+router.get("/", getAllInstructors);
 router.post("/signup", createAccount);
 
 module.exports = router;

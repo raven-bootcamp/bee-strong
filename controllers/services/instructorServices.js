@@ -2,11 +2,11 @@ const models = require("../../models");
 const bcrypt = require("bcrypt");
 const saltRounds = 10;
 
-// get all students
+// get all instructors
 // return
-//  - Array<Student>
+//  - Array<Instructors>
 const getAll = async () => {
-  const result = await models.Student.findAll({
+  const result = await models.Instructor.findAll({
     include: [
       {
         model: models.User,
@@ -17,11 +17,11 @@ const getAll = async () => {
   return result;
 };
 
-const getStudentData = async (newStudent) => {
-  const { student_name, email, password } = newStudent;
+const getInstructorData = async (newInstructor) => {
+  const { instructor_name, email, password } = newInstructor;
   const encryptedPassword = await bcrypt.hash(password, saltRounds);
   return {
-    student_name,
+    instructor_name,
     user: {
       email,
       password: encryptedPassword,
@@ -29,17 +29,17 @@ const getStudentData = async (newStudent) => {
   };
 };
 
-// create new student
+// create new instructor
 // argument : {
-//   student_name
+//   instructor_name
 //   email
 //   password
 // }
 // return
-//  - Student
-const create = async (newStudent) => {
-  const studentData = await getStudentData(newStudent);
-  const result = await models.Student.create(studentData, {
+//  - Instructor
+const create = async (newInstructor) => {
+  const instructorData = await getInstructorData(newInstructor);
+  const result = await models.Instructor.create(instructorData, {
     include: [models.User],
   });
   return result;
