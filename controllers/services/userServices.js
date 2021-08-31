@@ -18,6 +18,7 @@ const getAll = async () => {
 const authenticate = async (cred) => {
   const savedUser = await models.User.findOne({
     where: { email: cred.email },
+    include: [models.Student, models.Instructor],
   });
   const isValid = await bcrypt.compare(cred.password, savedUser.password);
   if (!isValid) return null;

@@ -38,7 +38,6 @@ const getStudentData = async (newStudent) => {
 // return
 //  - Student
 const create = async (newStudent) => {
-  console.log(newStudent);
   const studentData = await getStudentData(newStudent);
   const result = await models.Student.create(studentData, {
     include: [models.User],
