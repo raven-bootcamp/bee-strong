@@ -1,6 +1,6 @@
-// sign user up
+// log user in and go to dashboard
 
-const signUserUp = async (event) => {
+const logUserIn = async (event) => {
   event.preventDefault();
 
   const getUserData = (form) => {
@@ -15,22 +15,19 @@ const signUserUp = async (event) => {
 
   const form = event.target.closest("form");
   const userData = getUserData(form);
-  if (!"client" in userData) return;
 
-  const response = await fetch(`/api/${userData.client}s/signup`, {
+  const response = await fetch(`/api/users/login`, {
     method: "POST",
-    body: JSON.stringify({
-      ...userData,
-      [`${userData.client}_name`]: userData.name,
-    }),
+    body: JSON.stringify(userData),
     headers: { "Content-Type": "application/json" },
   });
 
   if (response.ok) {
-    document.location.replace("/"); /////  NOT SURE WHERE TO GO
+    console.log("Sucessful log in!");
+    // document.location.replace("/"); /////  NOT SURE WHERE TO GO
   } else {
-    alert("Fail to sign up ");
+    alert("Fail to log in ");
   }
 };
 
-document.getElementById("signUpForm").addEventListener("submit", signUserUp);
+document.getElementById("loginForm").addEventListener("submit", logUserIn);
