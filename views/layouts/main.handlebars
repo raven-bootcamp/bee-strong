@@ -19,36 +19,49 @@
       integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" 
       crossorigin="anonymous">
     <link rel="stylesheet" href="/css/style.css">
-    <title>BeeStrong</title>
+    <title>🐝 Bee Strong 💪</title>
   </head>
 
   <body class="min-vh-100">
     <!-- HEADER -->
-    <header class="p-3 bg-dark text-white">
-      <div class="container">
-        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-2 border-bottom">
-        
-          <h3 class="align-items-center col-md-3 mb-2 mb-md-0 text-light text-decoration-none">
-            BeeStrong
-          </h3>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark py-1" aria-label="navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+          <img style="width: 60px;" src="/images/bee-strong-logo-sm.jpeg" class="rounded-circle">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+          data-bs-target="#navbars" aria-controls="navbars" aria-expanded="false" 
+          aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="col-md-3 text-end">
+        <div class="collapse navbar-collapse" id="navbars">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Dashboard</a>
+            </li>
+          </ul>
+          <div>
             {{#if loggedIn}}
               <button 
-                id='btn-logout' 
-                type="button" 
-                class="btn btn-outline-light me-2">
+                id='btn-logout' type="button" class="btn btn-outline-light me-2">
                 Logout
+              </button>
+            {{else}}
+              <button type="button" class="btn btn-outline-light me-2">
+                <a class="text-decoration-none text-light" href="/login">Login</a>
+              </button>
+              <button type="button" class="btn btn-warning">
+                <a class="text-decoration-none text-dark" href="/singup">Sign-up</a>
               </button>
             {{/if}}
           </div>
         </div>
       </div>
-    </header>
-    
+    </nav>
 
     <!-- MAIN -->
-    <main class="container container-fluid mt-5">
+    <main class="container container-fluid mt-4">
       {{{ body }}}
     </main>
     <footer>
