@@ -1,9 +1,11 @@
+require("dotenv").config();
+
 const config = {
   host: "smtp.ethereal.email",
   port: 587,
   auth: {
-    user: "jalen.mcclure61@ethereal.email",
-    pass: "7hHRHwVjrc1ZfutZMu",
+    user: process.env.NODEMAILER_USER,
+    pass: process.env.NODEMAILER_PASS,
   },
 };
 
