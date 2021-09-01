@@ -34,6 +34,8 @@ const seedAll = async () => {
 
   await seedCourseTags();
   console.log("\n----- CourseTags Seeded -----\n");
+
+  process.exit(0);
 };
 
 seedAll();

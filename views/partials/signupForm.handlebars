@@ -1,0 +1,27 @@
+<form class="row g-3" id="signUpForm" novalidate>
+  <h2 class="h3 mb-3 fw-normal">Tell us about yourself</h2>
+
+  <div class="col-md-6">
+    {{> radio text="I am an instructor" inputName="checkBoxInstructor"
+      name="client" value="instructor"}}
+  </div>
+  
+  <div class="col-md-6">
+    {{> radio text="I am a student" inputName="checkBoxStudent"
+      name="client" value="student"}}
+  </div>
+  
+  {{> textInput label="Name" type="text" inputName="name" 
+    placeholder="Bob YourUncle"}}
+
+  {{> textInput 
+    label="Email" type="email" inputName="email" 
+    placeholder="sample@email.com"}}
+  
+  {{> textInput label="Password" type="password" inputName="password" 
+    placeholder="password"}}
+
+  {{> button text="Sign up" type="submit"}}
+</form>
+
+<script src="/js/signup.js"></script>
