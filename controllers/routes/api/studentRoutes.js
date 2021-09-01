@@ -6,6 +6,16 @@ const sanitize = require("../../services/sanitize");
 
 // Route : api/students/
 
+// save login into express session
+const saveLogin = (req, res, userData) => {
+  req.session.save(() => {
+    req.session.user = userData;
+    req.session.logged_in = true;
+
+    res.json({ user: userData, message: "You are now logged in!" });
+  });
+};
+
 // get all students
 const getAllStudents = async (req, res) => {
   try {
@@ -21,10 +31,11 @@ const getAllStudents = async (req, res) => {
 const createAccount = async (req, res) => {
   try {
     const rawStudent = await services.student.create(req.body);
-    const cleanedStudent = sanitize(rawStudent);
-    const messageObj = message.getWelcome(cleanedStudent.user.email);
+    const messageObj = message.getWelcome(rawStudent.user.email);
     emailer.sendMail(messageObj);
-    res.status(200).json(cleanedStudent);
+    const rawUser = await services.user.getOne(rawStudent.user.id);
+    const cleanedUser = sanitize(rawUser);
+    saveLogin(req, res, cleanedUser);
   } catch (err) {
     res.status(500).json(err);
   }

@@ -28,7 +28,19 @@ const authenticate = async (cred) => {
   return userWithoutPassword;
 };
 
+// get a sigle user
+// return - User
+const getOne = async (userId) => {
+  const result = await models.User.findOne({
+    where: { id: userId },
+    attributes: { exclude: ["password"] },
+    include: [models.Student, models.Instructor],
+  });
+  return result;
+};
+
 module.exports = {
   authenticate,
   getAll,
+  getOne,
 };

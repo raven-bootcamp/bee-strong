@@ -27,9 +27,9 @@ const signUserUp = async (event) => {
   });
 
   if (response.ok) {
-    document.location.replace("/"); /////  NOT SURE WHERE TO GO
+    document.location.replace("/dashboard"); /////  NOT SURE WHERE TO GO
   } else {
-    alert("Fail to sign up ");
+    alert("Fail to sign up");
   }
 };
 

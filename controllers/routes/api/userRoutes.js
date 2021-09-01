@@ -50,10 +50,22 @@ const logUserOut = (req, res) => {
   }
 };
 
+// get a single user
+const getOne = async (req, res) => {
+  try {
+    const rawUserData = await services.user.getOne(req.params);
+    const cleaned = sanitize(rawUserData);
+    res.status(200).json(cleaned);
+  } catch (err) {
+    res.status(404).json(err);
+  }
+};
+
 // router
 
 router.get("/", getAllUsers);
 router.post("/login", logUserIn);
 router.post("/logout", logUserOut);
+router.get("/:id", getOne);
 
 module.exports = router;
