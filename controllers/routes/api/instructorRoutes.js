@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const services = require("../../services");
+const emailer = require("../../services/emailer");
+const message = require("../../services/message");
 const sanitize = require("../../services/sanitize");
 
 // Route : api/instructors/
@@ -20,6 +22,8 @@ const createAccount = async (req, res) => {
   try {
     const rawInstructor = await services.instructor.create(req.body);
     const cleanedInstructor = sanitize(rawInstructor);
+    const messageObj = message.getWelcome(cleanedInstructor.user.email);
+    emailer.sendMail(messageObj);
     res.status(200).json(cleanedInstructor);
   } catch (err) {
     res.status(500).json(err);
