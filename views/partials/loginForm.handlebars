@@ -1,0 +1,14 @@
+<form class="row g-3" id="loginForm" novalidate>
+  <h2 class="h3 mb-3 fw-normal">Log in</h2>
+
+  {{> textInput 
+    label="Email" type="email" inputName="email" 
+    placeholder="sample@email.com"}}
+  
+  {{> textInput label="Password" type="password" inputName="password" 
+    placeholder="password"}}
+
+  {{> button text="Sign in" type="submit"}}
+</form>
+
+<script src="/js/login.js"></script>
