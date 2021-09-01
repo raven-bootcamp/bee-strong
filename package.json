@@ -10,6 +10,10 @@
     "seed": "node db/seeds/seed.js",
     "setup": "node db/initDB.js && node db/seeds/seed.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raven-bootcamp/p2-g3.git"
+  },
   "keywords": [],
   "author": " Nick Lee, Irene Adam Manik, Thara Supasiti",
   "license": "MIT",
