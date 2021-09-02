@@ -10,3 +10,7 @@ body {
   padding: 15px;
   margin: auto;
 }
+
+video {
+  max-width: 100%;
+}
