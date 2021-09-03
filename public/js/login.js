@@ -23,10 +23,9 @@ const logUserIn = async (event) => {
   });
 
   if (response.ok) {
-    alert("Sucessful log in!");
-    // document.location.replace("/"); /////  NOT SURE WHERE TO GO
+    document.location.replace("/dashboard");
   } else {
-    alert("Fail to log in ");
+    alert(response.message);
   }
 };
 

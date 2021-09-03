@@ -59,16 +59,19 @@ const getStudentList = async (req, res) => {
 };
 
 // add or remove student from course
+// expect {add : true, student_id: perhaps }
 const updateStudent = async (req, res) => {
+  const student_id = req.session.user.student.id || req.body.student_id;
   try {
-    console.log("course routes: ", req.body);
-
     if (req.body.add) {
-      await services.course.addStudent(req.body, req.params.id);
+      await services.course.addStudent({ student_id }, req.params.id);
       res.status(200).json({ message: "Student has been successfully added" });
+    } else {
+      await services.course.removeStudent({ student_id }, req.params.id);
+      res
+        .status(200)
+        .json({ message: "Student has been successfully removed" });
     }
-    await services.course.removeStudent(req.body, req.params.id);
-    res.status(200).json({ message: "Student has been successfully removed" });
   } catch (err) {
     res.status(500).json(err);
   }
