@@ -24,138 +24,102 @@
       referrerpolicy="no-referrer"
     />
 
-    <title>My page</title>
+    <title>My workouts</title>
   </head>
   <body>
     <!--Search bar-->
-    <div class="jumbotron text-center">
-      <h2>Choose your workout</h2>
-      <button type="button" class="btn btn-warning">Yoga</button>
-      <button type="button" class="btn btn-dark">Pilates</button>
-      <button type="button" class="btn btn-warning">Cardio</button>
-      <button type="button" class="btn btn-dark">Strength</button>
-    </div>
-
-    <!--Container for results and saved workouts-->
-    <div class="container-fluid">
-      <div class="row content">
-        <!--Results list-->
-        <div class="col-sm-3 sidenav pr-5">
-          <h3>My results</h3>
-
-          <!--Result 1-->
-          <div class="card mb-3">
-            <video
-              src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
-            ></video>
-            <div class="card-body">
-              <h5 class="card-title">Work out with Instructor name</h5>
-
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-
-          <!--Result 2-->
-          <div class="card mb-3">
-            <video
-              src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
-            ></video>
-            <div class="card-body">
-              <h5 class="card-title">Work out with Instructor name</h5>
-
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-
-          <!--Result 3-->
-          <div class="card mb-3">
-            <video
-              src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
-            ></video>
-            <div class="card-body">
-              <h5 class="card-title">Work out with Instructor name</h5>
-
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
-
-          <!--Result 4-->
-          <div class="card mb-3">
-            <video
-              src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
-            ></video>
-            <div class="card-body">
-              <h5 class="card-title">Work out with Instructor name</h5>
-
-              <i class="fas fa-star"></i>
-            </div>
-          </div>
+    <div class="jumbotron">
+      <h2>Welcome John, are you buzzing to get started?</h2>
+      <div class="d-flex justify-content-end">
+        <div class="mr-2">
+          <button type="button" class="btn btn-warning">
+            Search for more workouts
+          </button>
         </div>
-
-        <!--Saved workouts-->
-        <div class="col-sm-9">
-          <h3>My saved workouts</h3>
-
-          <div class="row">
-            <div class="col">
-              <div class="card mb-3">
-                <video
-                  src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
-                  controls
-                ></video>
-
-                <div class="card-body">
-                  <h5 class="card-title">Work out with Instructor name</h5>
-
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-            </div>
-
-            <div class="col">
-              <div class="card mb-3">
-                <video
-                  src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
-                  controls
-                ></video>
-                <div class="card-body">
-                  <h5 class="card-title">Work out with Instructor name</h5>
-
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-            </div>
-            <div class="w-100"></div>
-            <div class="col">
-              <div class="card mb-3">
-                <video
-                  src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
-                  controls
-                ></video>
-                <div class="card-body">
-                  <h5 class="card-title">Work out with Instructor name</h5>
-
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-            </div>
-            <div class="col">
-              <div class="card mb-3">
-                <video
-                  src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
-                  controls
-                ></video>
-                <div class="card-body">
-                  <h5 class="card-title">Work out with Instructor name</h5>
-
-                  <i class="fas fa-star"></i>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div>
+          <button type="button" class="btn btn-dark">Delete account</button>
         </div>
       </div>
     </div>
+
+
+     <!--Results container-->
+     <h2 class="text-center pb-5">Your saved workouts</h2>
+     <div class="container-fluid results-container d-flex justify-content-sm-center justify-content-md-center">
+       <div class="row">
+         <div class="col-sm-3 col-md-3">
+           <div class="result-card-container mr-1">
+             <div class="card" style="width: 18rem">
+               <video
+                 src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
+                
+               ></video>
+               <div class="card-body pb-1">
+                 <div class="d-inline-flex">
+                   <p class="card-text">Course name with Instructor</p>
+                   <i class="fas fa-star pl-3 pt-1"></i>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+ 
+         <div class="col-sm-3 col-md-3">
+           <div class="result-card-container mr-1">
+             <div class="card" style="width: 18rem">
+               <video
+                 src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
+                
+               ></video>
+               <div class="card-body pb-1">
+                 <div class="d-inline-flex">
+                   <p class="card-text">Course name with Instructor</p>
+                   <i class="fas fa-star pl-3 pt-1"></i>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+ 
+         <div class="col-sm-3 col-md-3">
+           <div class="result-card-container mr-1">
+             <div class="card" style="width: 18rem">
+               <video
+                 src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
+                 
+               ></video>
+               <div class="card-body pb-1">
+                 <div class="d-inline-flex justify-content-center">
+                   <p class="card-text">Course name with Instructor</p>
+                   <i class="fas fa-star pl-3 pt-1"></i>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+ 
+         <div class="col-sm-3 col-md-3">
+           <div class="result-card-container mr-1">
+             <div class="card" style="width: 18rem">
+               <video
+                 src="https://codingyaar.com/wp-content/uploads/video-in-bootstrap-card.mp4"
+                 
+               ></video>
+               <div class="card-body pb-1">
+                 <div class="d-inline-flex">
+                   <p class="card-text">Course name with Instructor</p>
+                   <i class="fas fa-star pl-3 pt-1"></i>
+                 </div>
+               </div>
+             </div>
+           </div>
+         </div>
+         
+       </div>
+     </div>
+ 
+    
+     
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
