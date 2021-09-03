@@ -12,7 +12,14 @@
             <p class="card-text">by {{instructor_name}}</p>
           </div>
           <div class="col-1">
-            <i class="fas fa-star"></i>
+            {{#if canSave}}
+              <button 
+                class="btn-invisible" data-course-id="{{id}}" >
+                <i class="fas fa-star"></i>
+              </button>
+            {{else}}
+              <i class="fas fa-star"></i>
+            {{/if}}
           </div>
         </div>
       </div>

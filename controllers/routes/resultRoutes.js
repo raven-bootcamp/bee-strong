@@ -23,8 +23,6 @@ const renderResultPage = async (req, res) => {
     const tags = sanitize(rawTags);
     const courses = sanitize(rawCourses);
 
-    console.log("\nresult route: ", courses);
-
     res.render("results", {
       loggedIn: req.session.logged_in,
       user: req.session.user,

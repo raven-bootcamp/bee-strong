@@ -112,7 +112,8 @@ const addStudent = async (student, courseId) => {
   const studentIds = courseStudents.map(({ studentId }) => studentId);
 
   if (!studentIds.includes(student_id)) {
-    return await createCourseStudent(courseId, student_id);
+    const result = await createCourseStudent(courseId, student_id);
+    return result;
   }
   return;
 };

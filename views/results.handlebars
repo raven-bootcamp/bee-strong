@@ -26,9 +26,10 @@
 
   {{!-- result  --}}
   {{#each courses as | course |}}
-    {{> courseCard instructor_name=this.instructor.instructor_name}}
+    {{> courseCard instructor_name=this.instructor.instructor_name canSave=true}}
   {{/each}}
 </div>
 
 
 <script src="/js/searchByTag.js"></script>
+<script src="/js/saveCourse.js"></script>
