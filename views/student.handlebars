@@ -1,0 +1,29 @@
+<div class="p-5 mb-4 bg-light rounded-3">
+  <h2>Welcome {{user.student.student_name}}, are you buzzing to get started?</h2>
+  <div class="d-flex justify-content-end">
+    <div class="mx-2">
+      {{#> buttonYellow }}
+        Search for more workouts
+      {{/buttonYellow}}
+    </div>
+    <div>
+      <button type="button" class="btn btn-dark">Delete account</button>
+    </div>
+  </div>
+</div>
+
+<h2 class="text-center pb-5">Your saved workouts</h2>
+<div
+  class="
+    container-fluid
+    results-container
+    d-flex
+    flex-wrap
+    justify-content-center
+  ">
+
+  {{!-- saved workout --}}
+  {{#each courses as | course |}}
+    {{> courseCard instructor_name=this.instructor.instructor_name}}
+  {{/each}}
+</div>

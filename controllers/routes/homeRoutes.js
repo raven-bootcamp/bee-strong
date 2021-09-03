@@ -1,4 +1,7 @@
 const router = require("express").Router();
+const withAuth = require("../../utils/auth");
+const services = require("../services");
+const sanitize = require("../services/sanitize");
 
 // render the homepage
 const renderHomePage = async (req, res) => {
@@ -41,8 +44,41 @@ const renderSignupPage = async (req, res) => {
   }
 };
 
+// render student page
+const renderStudentPage = async (req, res) => {
+  if (!req.session.user.student) {
+    res.redirect("/dashboard");
+    return;
+  }
+  const filter = { student_id: req.session.user.student.id };
+  const rawCourses = await services.course.getAll(filter);
+  const courses = sanitize(rawCourses);
+
+  try {
+    res.render("student", {
+      loggedIn: req.session.logged_in,
+      user: req.session.user,
+      courses: courses,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
+// redirect user to correct
+const redirectToDashboard = async (req, res) => {
+  const isStudent = req.session.user.student ? true : false;
+  if (isStudent) {
+    res.redirect("/student");
+  } else {
+    res.redirect("/instructor");
+  }
+};
+
 router.get("/", renderHomePage);
 router.get("/login", renderLoginPage);
 router.get("/signup", renderSignupPage);
+router.get("/student", withAuth, renderStudentPage);
+router.get("/dashboard", withAuth, redirectToDashboard);
 
 module.exports = router;
