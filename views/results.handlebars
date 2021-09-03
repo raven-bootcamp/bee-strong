@@ -4,7 +4,7 @@
   <div id="search-bar" class="container-fluid search-bar ">
     {{#each tags as | tag |}}
       <button 
-        type="button" class="btn" data-tag-name="{{tag.tag_name}}"
+        type="button" class="btn btn-search" data-tag-name="{{tag.tag_name}}"
         data-result-target="#result-container">
         {{tag.tag_name}}
       </button>
@@ -24,7 +24,10 @@
     justify-content-center
   ">
 
-  
+  {{!-- result  --}}
+  {{#each courses as | course |}}
+    {{> courseCard instructor_name=this.instructor.instructor_name}}
+  {{/each}}
 </div>
 
 

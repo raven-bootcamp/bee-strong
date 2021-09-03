@@ -1,4 +1,5 @@
 const router = require("express").Router();
+const resultRoutes = require("./resultRoutes");
 const withAuth = require("../../utils/auth");
 const services = require("../services");
 const sanitize = require("../services/sanitize");
@@ -75,33 +76,11 @@ const redirectToDashboard = async (req, res) => {
   }
 };
 
-// render student page
-const renderResultPage = async (req, res) => {
-  // must be student
-  if (!req.session.user.student) {
-    res.redirect("/dashboard");
-    return;
-  }
-  // const filter = { student_id: req.session.user.student.id };
-  const rawTags = await services.tag.getAll();
-  const tags = sanitize(rawTags);
-
-  try {
-    res.render("results", {
-      loggedIn: req.session.logged_in,
-      user: req.session.user,
-      tags: tags,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-};
-
 router.get("/", renderHomePage);
 router.get("/login", renderLoginPage);
 router.get("/signup", renderSignupPage);
 router.get("/student", withAuth, renderStudentPage);
 router.get("/dashboard", withAuth, redirectToDashboard);
-router.get("/results", withAuth, renderResultPage);
+router.use("/results", withAuth, resultRoutes);
 
 module.exports = router;
