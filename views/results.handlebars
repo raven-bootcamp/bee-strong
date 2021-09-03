@@ -1,16 +1,31 @@
 <div class="p-5 mb-4 bg-light rounded-3 text-center">
 
   <h2>Choose your workout</h2>
-  <div class="container-fluid search-bar ">
+  <div id="search-bar" class="container-fluid search-bar ">
     {{#each tags as | tag |}}
-      <button type="button" class="btn">{{tag.tag_name}}</button>
+      <button 
+        type="button" class="btn" data-tag-name="{{tag.tag_name}}"
+        data-result-target="#result-container">
+        {{tag.tag_name}}
+      </button>
     {{/each}}
   </div>
-  
-
-  {{!-- <button type="button" class="btn btn-warning">Yoga</button>
-  <button type="button" class="btn btn-dark">Pilates</button>
-  <button type="button" class="btn btn-warning">Cardio</button>
-  <button type="button" class="btn btn-dark">Strength</button> --}}
     
 </div>
+
+<h2 class="text-center pb-5">Let's get ready to bumble!</h2>
+<div
+  id="result-container"
+  class="
+    container-fluid
+    results-container
+    d-flex
+    flex-wrap
+    justify-content-center
+  ">
+
+  
+</div>
+
+
+<script src="/js/searchByTag.js"></script>

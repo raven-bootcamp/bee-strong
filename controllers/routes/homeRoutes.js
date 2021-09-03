@@ -86,8 +86,6 @@ const renderResultPage = async (req, res) => {
   const rawTags = await services.tag.getAll();
   const tags = sanitize(rawTags);
 
-  console.log(tags);
-
   try {
     res.render("results", {
       loggedIn: req.session.logged_in,
