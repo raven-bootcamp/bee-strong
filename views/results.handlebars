@@ -1,0 +1,16 @@
+<div class="p-5 mb-4 bg-light rounded-3 text-center">
+
+  <h2>Choose your workout</h2>
+  <div class="container-fluid search-bar ">
+    {{#each tags as | tag |}}
+      <button type="button" class="btn">{{tag.tag_name}}</button>
+    {{/each}}
+  </div>
+  
+
+  {{!-- <button type="button" class="btn btn-warning">Yoga</button>
+  <button type="button" class="btn btn-dark">Pilates</button>
+  <button type="button" class="btn btn-warning">Cardio</button>
+  <button type="button" class="btn btn-dark">Strength</button> --}}
+    
+</div>
