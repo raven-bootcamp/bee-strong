@@ -74,6 +74,8 @@ const renderInstructorPage = async (req, res) => {
   }
   const filter = { instructor_id: req.session.user.instructor.id };
   const rawCourses = await services.course.getAll(filter);
+  const rawTags = await services.tag.getAll();
+  const tags = sanitize(rawTags);
   const courses = sanitize(rawCourses);
 
   console.log("\n home routes, courses", courses[0]);
@@ -83,6 +85,7 @@ const renderInstructorPage = async (req, res) => {
       loggedIn: req.session.logged_in,
       user: req.session.user,
       courses: courses,
+      tags: tags,
     });
   } catch (err) {
     res.status(500).json(err);

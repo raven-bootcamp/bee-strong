@@ -26,7 +26,9 @@
 
   {{!-- result  --}}
   {{#each courses as | course |}}
-    {{> courseCard instructor_name=this.instructor.instructor_name canSave=true}}
+    {{#> courseCard }}
+      {{> cardBodyStudent instructor_name=this.instructor.instructor_name canSave=true}}
+    {{/courseCard}}
   {{/each}}
 </div>
 

@@ -23,6 +23,15 @@
             placeholder="https://www.youtube.com/embed/..." 
             label="Course Link"}}
 
+          <div class="d-flex flex-wrap justify-content-center mb-3">
+            {{#each tags as | tag | }}
+              <div class="col-4">
+                {{> checkbox name="tag_name" text=this.tag_name
+                value=this.tag_name}}
+              </div>
+            {{/each}}
+          </div>
+          
           <div class="d-flex justify-content-center">
             <button type="button" class="btn btn-dark mx-2" 
               data-bs-dismiss="modal">
