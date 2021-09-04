@@ -29,32 +29,6 @@ video {
 
 
 
-
-/* if in mobile (< 576px */
-/* increase the hero to 100vh */
-@media screen and (max-width : 576px) {
-  
-  .hero-image{
-    height: 100vh;
-  }
-  
-  .hero-title {
-    font-size: 20px;
-  }
-
-  .hero-subtitle {
-    font-size: 10px;
-  }
-}
-
-/* 576px < screen < 800px */
-@media screen and (min-width: 576px) and (max-width: 800px) {
-  .hero-image{
-    height: 90vh;
-  }
-}
-
-
 .hero-title {
   font-size: 50px;
   color: white;
@@ -92,3 +66,29 @@ video {
   border: none;
   background-color: rgba(255, 255, 255, 0);
 }
+
+
+/* if in mobile (< 576px */
+/* increase the hero to 100vh */
+@media screen and (max-width : 576px) {
+  
+  .hero-image{
+    height: 100vh;
+  }
+  
+  .hero-title {
+    font-size: 20px;
+  }
+
+  .hero-subtitle {
+    font-size: 10px;
+  }
+}
+
+/* 576px < screen < 800px */
+@media screen and (min-width: 576px) and (max-width: 800px) {
+  .hero-image{
+    height: 90vh;
+  }
+}
+
