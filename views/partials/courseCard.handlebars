@@ -6,22 +6,7 @@
       </iframe>
 
       <div class="card-body">
-        <div class="d-flex flex-wrap">
-          <div class="col-11">
-            <p class="card-text mb-1">{{course_name}}</p>
-            <p class="card-text">by {{instructor_name}}</p>
-          </div>
-          <div class="col-1">
-            {{#if canSave}}
-              <button 
-                class="btn-invisible" data-course-id="{{id}}" >
-                <i class="fas fa-star"></i>
-              </button>
-            {{else}}
-              <i class="fas fa-star"></i>
-            {{/if}}
-          </div>
-        </div>
+        {{> @partial-block }}
       </div>
     </div>
 </div>

@@ -27,7 +27,9 @@
 
   {{!-- saved workout --}}
   {{#each courses as | course |}}
-    {{> courseCard instructor_name=this.instructor.instructor_name}}
+    {{#> courseCard }} 
+      {{> cardBodyStudent instructor_name=this.instructor.instructor_name}}
+    {{/courseCard}}
   {{/each}}
 </div>
 

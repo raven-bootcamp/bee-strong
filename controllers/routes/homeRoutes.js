@@ -66,6 +66,27 @@ const renderStudentPage = async (req, res) => {
   }
 };
 
+// render instructor page
+const renderInstructorPage = async (req, res) => {
+  if (!req.session.user.instructor) {
+    res.redirect("/dashboard");
+    return;
+  }
+  // const filter = { student_id: req.session.user.student.id };
+  // const rawCourses = await services.course.getAll(filter);
+  // const courses = sanitize(rawCourses);
+
+  try {
+    res.render("instructor", {
+      loggedIn: req.session.logged_in,
+      user: req.session.user,
+      // courses: courses,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 // redirect user to correct
 const redirectToDashboard = async (req, res) => {
   const isStudent = req.session.user.student ? true : false;
@@ -80,6 +101,7 @@ router.get("/", renderHomePage);
 router.get("/login", renderLoginPage);
 router.get("/signup", renderSignupPage);
 router.get("/student", withAuth, renderStudentPage);
+router.get("/instructor", withAuth, renderInstructorPage);
 router.get("/dashboard", withAuth, redirectToDashboard);
 router.use("/results", withAuth, resultRoutes);
 
