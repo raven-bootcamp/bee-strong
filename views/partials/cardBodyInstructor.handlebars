@@ -1,0 +1,27 @@
+<div class="d-flex flex-wrap">
+  <h5 class="card-title">{{course_name}}</h5>
+  
+  <div class="col-12 mb-3">
+      {{#if active}}
+        Active
+      {{else}}
+        Inactive
+      {{/if}}
+  </div>
+  
+  <div class="col-12 mb-3">
+    {{#each tags as | tag |}}
+      {{> tags}}
+    {{/each}}
+  </div>
+
+  <div class="col-12">
+    <button type="button" class="btn btn-warning btn-update-course mt-2" 
+      data-bs-toggle="modal" data-bs-target="#course-update-modal" 
+      data-course-id="{{id}}">
+      Update
+    </button>
+    <a href="#" class="btn btn-danger mt-2">Delete</a>
+    <a href="#" class="btn btn-success mt-2">Current Students</a>
+  </div>
+</div>

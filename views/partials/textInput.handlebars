@@ -5,9 +5,10 @@
     {{label}}
   </label>
   <input 
-    type="{{type}}" 
+    type="{{#if type}}{{type}}{{else}}text{{/if}}" 
     class="form-control"
     name="{{inputName}}"
     id="{{inputName}}" 
-    placeholder="{{placeholder}}">
+    placeholder="{{placeholder}}"
+    value="{{value}}">
 </div>

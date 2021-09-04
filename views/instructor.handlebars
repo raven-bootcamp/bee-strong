@@ -1,4 +1,35 @@
-<div class="container">
-    <h1>My Content</h1> 
-    {{> instructorContent}}
+<div class="p-5 mb-4 bg-light rounded-3">
+  <h2>Welcome {{user.instructor.instructor_name}}, </h2>
+
+  <div class="d-flex justify-content-end">
+    <button type="button" class="btn btn-warning" 
+      data-bs-toggle="modal" data-bs-target="#course-update-modal">
+      Add Content
+    </button>
+  </div>
 </div>
+
+{{!-- my content --}}
+<h2 class="text-center pb-5">My Content</h2>
+<div
+  class="
+    container-fluid
+    results-container
+    d-flex
+    flex-wrap
+    justify-content-center
+  ">
+  {{#each courses as | course |}}
+    {{#> courseCard }}
+      {{> cardBodyInstructor }}
+    {{/courseCard }}
+  {{/each}}
+</div>
+
+
+{{!-- modal --}}
+{{> updateCourseModal }}
+
+
+<script src="/js/updateCourse.js"></script>  <!-- need this js file before populateCourseModal -->
+<script src="/js/populateCourseModal.js"></script>

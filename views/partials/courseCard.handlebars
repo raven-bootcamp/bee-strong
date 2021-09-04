@@ -1,27 +1,13 @@
 <div class="col-sm-6 col-lg-4 col-xl-3 pb-3 d-flex">
-    <div class="card mx-auto" style="width: 18rem">
-    
-      <iframe src="{{course_link}}" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-      </iframe>
+  <div class="card mx-auto" style="width: 18rem">
+  
+    <iframe src="{{course_link}}" 
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+    </iframe>
 
-      <div class="card-body">
-        <div class="d-flex flex-wrap">
-          <div class="col-11">
-            <p class="card-text mb-1">{{course_name}}</p>
-            <p class="card-text">by {{instructor_name}}</p>
-          </div>
-          <div class="col-1">
-            {{#if canSave}}
-              <button 
-                class="btn-invisible" data-course-id="{{id}}" >
-                <i class="fas fa-star"></i>
-              </button>
-            {{else}}
-              <i class="fas fa-star"></i>
-            {{/if}}
-          </div>
-        </div>
-      </div>
+    <div class="card-body">
+      {{> @partial-block }}
     </div>
+  </div>
 </div>

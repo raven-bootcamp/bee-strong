@@ -66,6 +66,32 @@ const renderStudentPage = async (req, res) => {
   }
 };
 
+// render instructor page
+const renderInstructorPage = async (req, res) => {
+  if (!req.session.user.instructor) {
+    res.redirect("/dashboard");
+    return;
+  }
+  const filter = { instructor_id: req.session.user.instructor.id };
+  const rawCourses = await services.course.getAll(filter);
+  const rawTags = await services.tag.getAll();
+  const tags = sanitize(rawTags);
+  const courses = sanitize(rawCourses);
+
+  console.log("\n home routes, courses", courses[0]);
+
+  try {
+    res.render("instructor", {
+      loggedIn: req.session.logged_in,
+      user: req.session.user,
+      courses: courses,
+      tags: tags,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+};
+
 // redirect user to correct
 const redirectToDashboard = async (req, res) => {
   const isStudent = req.session.user.student ? true : false;
@@ -80,6 +106,7 @@ router.get("/", renderHomePage);
 router.get("/login", renderLoginPage);
 router.get("/signup", renderSignupPage);
 router.get("/student", withAuth, renderStudentPage);
+router.get("/instructor", withAuth, renderInstructorPage);
 router.get("/dashboard", withAuth, redirectToDashboard);
 router.use("/results", withAuth, resultRoutes);
 
