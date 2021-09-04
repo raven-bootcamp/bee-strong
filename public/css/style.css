@@ -33,8 +33,6 @@ video {
   background-attachment: fixed;
 }
 
-
-
 .hero-title {
   font-size: 50px;
   color: white;
@@ -88,6 +86,10 @@ video {
 
   .hero-subtitle {
     font-size: 10px;
+  }
+
+  .btn-search {
+    margin: 4px;
   }
 }
 
