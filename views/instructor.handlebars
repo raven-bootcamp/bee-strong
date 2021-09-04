@@ -2,10 +2,19 @@
   <h2>Welcome {{user.instructor.instructor_name}}, </h2>
 </div>
 
-
-<div class="container">
-  <h1>My Content</h1> 
+{{!-- my content --}}
+<h2 class="text-center pb-5">My Content</h2>
+<div
+  class="
+    container-fluid
+    results-container
+    d-flex
+    flex-wrap
+    justify-content-center
+  ">
   {{#each courses as | course |}}
-    {{> instructorContent}}
+    {{#> courseCard }}
+      {{> cardBodyInstructor }}
+    {{/courseCard }}
   {{/each}}
 </div>

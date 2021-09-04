@@ -72,15 +72,17 @@ const renderInstructorPage = async (req, res) => {
     res.redirect("/dashboard");
     return;
   }
-  // const filter = { student_id: req.session.user.student.id };
-  // const rawCourses = await services.course.getAll(filter);
-  // const courses = sanitize(rawCourses);
+  const filter = { instructor_id: req.session.user.instructor.id };
+  const rawCourses = await services.course.getAll(filter);
+  const courses = sanitize(rawCourses);
+
+  console.log("\n home routes, courses", courses[0]);
 
   try {
     res.render("instructor", {
       loggedIn: req.session.logged_in,
       user: req.session.user,
-      // courses: courses,
+      courses: courses,
     });
   } catch (err) {
     res.status(500).json(err);
