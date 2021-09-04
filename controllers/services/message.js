@@ -22,6 +22,35 @@ const getWelcome = (email) => {
   };
 };
 
+//-------------------------------------
+const farewellText = `
+We are sorry to hear that you are leaving our hive :(
+    
+We hope you had a good time with us! 
+
+May the honey flows and flowers forever bloom....
+
+Your Queen,
+`;
+
+const farewellHtml = `
+<p><b>We are sorry to hear that you are leaving our hive :(</b></p>
+<p>We hope you had a good time with us!</p>
+<p>May the honey flows and flowers forever bloom....</p>
+<p>Your Queen,<br/>
+  <img src="https://crazyleafdesign.com/blog/wp-content/uploads/2016/10/bee-strong.jpg"/></p>
+`;
+
+const getFarewell = (email) => {
+  return {
+    to: `${email}`,
+    subject: "Sorry to hear you want to leave our hive!",
+    text: farewellText,
+    html: farewellHtml,
+  };
+};
+
 module.exports = {
   getWelcome,
+  getFarewell,
 };

@@ -25,7 +25,8 @@ const logUserIn = async (event) => {
   if (response.ok) {
     document.location.replace("/dashboard");
   } else {
-    alert(response.message);
+    const data = await response.json();
+    alert(data.message);
   }
 };
 
