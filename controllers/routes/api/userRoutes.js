@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const services = require("../../services");
+const emailer = require("../../services/emailer");
+const message = require("../../services/message");
 const sanitize = require("../../services/sanitize");
 
 // Route : api/users/
@@ -10,6 +12,12 @@ const saveLogin = (req, res, userData) => {
     req.session.logged_in = true;
 
     res.json({ user: userData, message: "You are now logged in!" });
+  });
+};
+
+const destroySession = (req, res) => {
+  req.session.destroy(() => {
+    res.status(204).end();
   });
 };
 
@@ -35,16 +43,16 @@ const logUserIn = async (req, res) => {
     }
     saveLogin(req, res, userData);
   } catch (err) {
-    res.status(400).json(err);
+    res
+      .status(400)
+      .json({ message: "Incorrect email or password, please try again" });
   }
 };
 
 // log a user out
 const logUserOut = (req, res) => {
   if (req.session.logged_in) {
-    req.session.destroy(() => {
-      res.status(204).end();
-    });
+    destroySession(req, res);
   } else {
     res.status(404).end();
   }
@@ -66,9 +74,16 @@ const removeUser = async (req, res) => {
   try {
     const userId = req.params.id;
     const usersRemoved = await services.user.remove(userId);
-    res.status(200).json({ message: `Users removed: ${usersRemoved}` });
+    if (usersRemoved && req.session.logged_in) {
+      const email = req.session.user.email;
+      const messageObj = message.getFarewell(email);
+      emailer.sendMail(messageObj);
+      destroySession(req, res);
+    } else {
+      res.status(404).json({ message: `User not found` });
+    }
   } catch (err) {
-    res.status(404).json(err);
+    res.status(400).json(err);
   }
 };
 
