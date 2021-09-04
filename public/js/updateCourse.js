@@ -2,17 +2,20 @@ const populateUpdateCourseModal = async (event) => {
   event.preventDefault();
 
   // populate existing data to modal
-  const populateData = (modal, data) => {
+  const populateData = (modal, courseData) => {
     const inputs = modal.querySelectorAll("input");
-    const keys = Object.keys(data);
 
+    const saveBtn = modal.querySelector(".btn-save-course");
+    saveBtn.setAttribute("data-course-id", courseData.id);
+
+    const keys = Object.keys(data);
     keys.map((key) => {
       const input = [...inputs].find((i) => i.name === key);
       if (!input) return;
       if (input.type === "checkbox") {
-        input.checked = data[key];
+        input.checked = courseData[key];
       } else {
-        input.value = data[key];
+        input.value = courseData[key];
       }
     });
   };
