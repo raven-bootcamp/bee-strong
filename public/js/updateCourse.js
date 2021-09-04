@@ -49,6 +49,22 @@ const updateCourse = async (event) => {
     const modal = bootstrap.Modal.getInstance(modalEl);
     modal.hide();
   };
+
+  // update course
+  const updateDatabase = async (data, courseId) => {
+    const response = await fetch(`/api/courses/${courseId}`, {
+      method: "PUT",
+      body: JSON.stringify(data),
+      headers: { "Content-Type": "application/json" },
+    });
+
+    if (!response.ok) {
+      const data = await response.json();
+      console.error(data);
+    }
+    return true;
+  };
+
   // -----------------------------------------
   // combine
 
@@ -56,22 +72,12 @@ const updateCourse = async (event) => {
   const courseData = getInputdata(form);
   const courseId = await getCourseId(form, courseData);
 
-  console.log(courseId);
-
-  // const response = await fetch(`/api/courses/${courseId}`, {
-  //   method: "POST",
-  //   body: JSON.stringify(userData),
-  //   headers: { "Content-Type": "application/json" },
-  // });
-
-  // if (response.ok) {
-  //   document.location.reload();
-  // } else {
-  //   const data = await response.json();
-  //   alert(data.message);
-  // }
-
-  // reset form
+  if (!courseId) {
+    alert("Incomplete form");
+    return;
+  }
+  await updateDatabase(courseData, courseId);
+  document.location.reload();
   resetForm(form);
 };
 
