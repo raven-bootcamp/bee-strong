@@ -6,6 +6,7 @@ body {
   
 }
 
+
 .login-form {
   width: 100%;
   max-width: 400px;
@@ -15,6 +16,11 @@ body {
 
 video {
   max-width: 100%;
+}
+
+.navbrand-text {
+  
+  font-family: 'Montserrat', sans-serif;
 }
 
 .hero-image {
