@@ -78,8 +78,6 @@ const renderInstructorPage = async (req, res) => {
   const tags = sanitize(rawTags);
   const courses = sanitize(rawCourses);
 
-  console.log("\n home routes, courses", courses[0]);
-
   try {
     res.render("instructor", {
       loggedIn: req.session.logged_in,

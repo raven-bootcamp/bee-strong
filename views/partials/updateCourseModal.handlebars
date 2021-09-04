@@ -26,8 +26,7 @@
           <div class="d-flex flex-wrap justify-content-center mb-3">
             {{#each tags as | tag | }}
               <div class="col-4">
-                {{> checkbox name="tag_name" text=this.tag_name
-                value=this.tag_name}}
+                {{> checkbox name="tags" text=this.tag_name value=this.id}}
               </div>
             {{/each}}
           </div>
