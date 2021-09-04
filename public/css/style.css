@@ -74,3 +74,21 @@ video {
   object-fit: cover;
  
 }
+/*  search bar buttons */
+.search-bar button:nth-child(odd) {
+  color: #000;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.search-bar button:nth-child(even) {
+  color: #fff;
+  background-color: #212529;
+  border-color: #212529;
+}
+
+/* invisible button */
+.btn-invisible {
+  border: none;
+  background-color: rgba(255, 255, 255, 0);
+}

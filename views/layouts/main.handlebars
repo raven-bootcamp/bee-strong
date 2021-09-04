@@ -38,7 +38,7 @@
         <div class="collapse navbar-collapse" id="navbars">
           <ul class="navbar-nav me-auto mb-2 mb-md-0">
             <li class="nav-item">
-              <a class="nav-link" href="#">Dashboard</a>
+              <a class="nav-link" href="/dashboard">Dashboard</a>
             </li>
           </ul>
           <div>
@@ -51,9 +51,10 @@
               <button type="button" class="btn btn-outline-light me-2">
                 <a class="text-decoration-none text-light" href="/login">Login</a>
               </button>
-              <button type="button" class="btn btn-warning">
+              
+              {{#> buttonYellow }}
                 <a class="text-decoration-none text-dark" href="/signup">Sign-up</a>
-              </button>
+              {{/buttonYellow}}
             {{/if}}
           </div>
         </div>
@@ -61,7 +62,7 @@
     </nav>
 
     <!-- MAIN -->
-   <main class="container-fluid p-0">
+    <main class="container-fluid p-0">
       {{{ body }}}
     </main>
     <footer>
