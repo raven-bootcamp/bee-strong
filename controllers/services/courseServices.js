@@ -4,35 +4,42 @@ const courseTagServices = require("./courseTagServices");
 const sanitize = require("./sanitize");
 const { filterObjectByKeys } = require("../utils/object");
 const acceptedKeys = ["course_name", "active", "instructor_id"];
+const assocModels = {
+  student_id: models.Student,
+  tag_name: models.Tag,
+};
 
 // --------------------------------------------------------------------------------------
 //   Get All with filter
+
+// create filters to associated models
+const getOtherFilters = (rawFilter) => {
+  const assocKeys = Object.keys(assocModels);
+  const result = assocKeys.reduce((acc, key) => {
+    if (key in rawFilter) {
+      const filterObj = { [key]: rawFilter[key] };
+      const toInclude = {
+        model: assocModels[key],
+        where: filterObj,
+      };
+      return [...acc, toInclude];
+    }
+    return [...acc];
+  }, []);
+  return result;
+};
 
 // filter the courses according to some filters and return ids
 // return Array<int>
 const getFilteredIds = async (rawFilter) => {
   const courseFilter = filterObjectByKeys(acceptedKeys, rawFilter);
-  const studentFilter = rawFilter.student_id
-    ? { id: rawFilter.student_id }
-    : {};
-  const tagFilter = rawFilter.tag_name ? { tag_name: rawFilter.tag_name } : {};
+  const otherFilters = getOtherFilters(rawFilter);
 
+  console.log("\ncourse services : ", otherFilters);
   const courses = await models.Course.findAll({
     attributes: ["id"],
     where: courseFilter,
-    include: [
-      {
-        model: models.Instructor,
-      },
-      {
-        model: models.Student,
-        where: studentFilter,
-      },
-      {
-        model: models.Tag,
-        where: tagFilter,
-      },
-    ],
+    include: otherFilters,
   });
   return courses.map(({ id }) => id);
 };

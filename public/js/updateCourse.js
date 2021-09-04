@@ -1,40 +1,81 @@
-const populateUpdateCourseModal = async (event) => {
+const updateCourse = async (event) => {
   event.preventDefault();
 
-  // populate existing data to modal
-  const populateData = (modal, courseData) => {
-    const inputs = modal.querySelectorAll("input");
+  // get course id or create new course
+  // return int - course id
+  const getCourseId = async (form, courseData) => {
+    const courseId = form.getAttribute("data-course-id");
+    if (courseId) return courseId; // update only
 
-    const saveBtn = modal.querySelector(".btn-save-course");
-    saveBtn.setAttribute("data-course-id", courseData.id);
-
-    const keys = Object.keys(data);
-    keys.map((key) => {
-      const input = [...inputs].find((i) => i.name === key);
-      if (!input) return;
-      if (input.type === "checkbox") {
-        input.checked = courseData[key];
-      } else {
-        input.value = courseData[key];
-      }
+    console.log(courseData);
+    const response = await fetch(`/api/courses/create`, {
+      method: "POST",
+      body: JSON.stringify(courseData),
+      headers: { "Content-Type": "application/json" },
     });
+
+    if (response.ok) {
+      const data = await response.json();
+      return data.id; // create new course
+    } else {
+      return null; // error
+    }
   };
 
-  const courseId = event.target.getAttribute("data-course-id");
-  const modalId = event.target.getAttribute("data-bs-target");
-  const modal = document.querySelector(modalId);
-  const response = await fetch(`/api/courses/${courseId}`, {
-    method: "GET",
-  });
-  const data = await response.json();
+  // get input value depending on their type
+  const getInputValue = (input) => {
+    if (input.type === "checkbox") return input.checked;
+    return input.value.trim();
+  };
 
-  if (response.ok) {
-    populateData(modal, data);
-  } else {
-    console.log(data);
-  }
+  // get input data
+  const getInputdata = (form) => {
+    const inputs = form.querySelectorAll("input");
+    const result = [...inputs].reduce((acc, input) => {
+      if (input.hasAttribute("name")) {
+        const key = input.name;
+        const value = getInputValue(input);
+        return value ? { ...acc, [key]: value } : { ...acc };
+      }
+      return { ...acc };
+    }, {});
+    return result;
+  };
+
+  // reset the form
+  const resetForm = (form) => {
+    form.setAttribute("data-course-id", "");
+    form.reset();
+    const modalEl = form.closest(".modal");
+    const modal = bootstrap.Modal.getInstance(modalEl);
+    modal.hide();
+  };
+  // -----------------------------------------
+  // combine
+
+  const form = event.target.closest("form");
+  const courseData = getInputdata(form);
+  const courseId = await getCourseId(form, courseData);
+
+  console.log(courseId);
+
+  // const response = await fetch(`/api/courses/${courseId}`, {
+  //   method: "POST",
+  //   body: JSON.stringify(userData),
+  //   headers: { "Content-Type": "application/json" },
+  // });
+
+  // if (response.ok) {
+  //   document.location.reload();
+  // } else {
+  //   const data = await response.json();
+  //   alert(data.message);
+  // }
+
+  // reset form
+  resetForm(form);
 };
 
-document.querySelectorAll(".btn-update-course").forEach((button) => {
-  button.addEventListener("click", populateUpdateCourseModal);
-});
+document
+  .getElementById("course-update-form")
+  .addEventListener("submit", updateCourse);

@@ -14,7 +14,7 @@ const saveCourse = async (event) => {
   });
 
   if (response.ok) {
-    document.location.replace("/dashboard"); ///// NOT SURE WHERE TO GO
+    document.location.replace("/dashboard");
   } else {
     const data = await response.json();
     alert(data.message);
