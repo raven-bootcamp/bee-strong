@@ -1,2 +1,51 @@
-<h1>Welcome</h1>
+<!--set the background image for the header in the line below-->
+<div class="container-fluid p-0">
+    <div class="py-5 hero-image">
+        <div class="text-left p-5">
 
+            <h1 class="hero-title">Start your fitness journey with BeeStrong</h1>
+            <p class="hero-subtitle">What are you waiting for? Get buzzin' and join the hive today</p>
+            <div class="pt-4">
+
+                <div class="login-form rounded-3 card" style="margin-left: 0;">
+                    {{> signupForm}}
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container-fluid">
+    <h2 class="text-center pt-5">Upcoming classes</h2>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 pt-4 d-flex justify-content-center">
+        <div class="col d-flex justify-content-center">
+            <div class="card upcoming-class-card" style="width: 18rem;">
+                <img src="/images/yoga.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center" style="font-weight: bold">Yoga Sunday</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="col d-flex justify-content-center">
+            <div class="card upcoming-class-card" style="width: 18rem;">
+                <img src="/images/cardio.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center" style="font-weight: bold">30-minute HIIT</p>
+                </div>
+            </div>
+        </div>
+        <div class="col d-flex justify-content-center">
+            <div class="card upcoming-class-card" style="width: 18rem;">
+                <img src="/images/stretch.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <p class="card-text text-center" style="font-weight: bold">Glutes and core</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
