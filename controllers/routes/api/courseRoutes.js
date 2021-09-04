@@ -18,7 +18,10 @@ const getAllCourses = async (req, res) => {
 // create new course
 const createNewCourse = async (req, res) => {
   try {
-    const rawCourse = await services.course.create(req.body);
+    const instructorId =
+      req.session.user.instructor.id || req.body.instructorId;
+    const courseData = { ...req.body, instructorId: instructorId };
+    const rawCourse = await services.course.create(courseData);
     const cleanedCourse = sanitize(rawCourse);
     res.status(200).json(cleanedCourse);
   } catch (err) {

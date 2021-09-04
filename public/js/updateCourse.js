@@ -7,7 +7,6 @@ const updateCourse = async (event) => {
     const courseId = form.getAttribute("data-course-id");
     if (courseId) return courseId; // update only
 
-    console.log(courseData);
     const response = await fetch(`/api/courses/create`, {
       method: "POST",
       body: JSON.stringify(courseData),
