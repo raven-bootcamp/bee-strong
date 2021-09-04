@@ -39,8 +39,17 @@ const getOne = async (userId) => {
   return result;
 };
 
+// remove a user
+// argument: userId
+// return - int number of destroyed rows
+const remove = async (userId) => {
+  const result = await models.User.destroy({ where: { id: userId } });
+  return result;
+};
+
 module.exports = {
   authenticate,
   getAll,
   getOne,
+  remove,
 };

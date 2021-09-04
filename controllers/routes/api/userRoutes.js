@@ -61,11 +61,23 @@ const getOne = async (req, res) => {
   }
 };
 
+// remove a user
+const removeUser = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const usersRemoved = await services.user.remove(userId);
+    res.status(200).json({ message: `Users removed: ${usersRemoved}` });
+  } catch (err) {
+    res.status(404).json(err);
+  }
+};
+
 // router
 
 router.get("/", getAllUsers);
 router.post("/login", logUserIn);
 router.post("/logout", logUserOut);
 router.get("/:id", getOne);
+router.delete("/:id", removeUser);
 
 module.exports = router;
