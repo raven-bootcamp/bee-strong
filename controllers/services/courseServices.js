@@ -1,7 +1,9 @@
+const { Op } = require("sequelize");
 const models = require("../../models");
 const courseTagServices = require("./courseTagServices");
 const sanitize = require("./sanitize");
 const { filterObjectByKeys } = require("../utils/object");
+
 const acceptedKeys = ["course_name", "active", "instructor_id"];
 const assocModels = {
   student_id: { model: models.Student, field: "id" },
@@ -28,22 +30,34 @@ const getOtherFilters = (rawFilter) => {
   return result;
 };
 
+// create filter object to course
+const getCourseFilter = (rawFilter) => {
+  const result = filterObjectByKeys(acceptedKeys, rawFilter);
+  if ("active" in result) {
+    const isActive = result.active;
+    result.active = isActive ? { [Op.is]: true } : { [Op.is]: false };
+  }
+  return result;
+};
+
 // filter the courses according to some filters and return ids
 // return Array<int>
 const getFilteredIds = async (rawFilter) => {
-  const courseFilter = filterObjectByKeys(acceptedKeys, rawFilter);
+  const courseFilter = getCourseFilter(rawFilter);
   const otherFilters = getOtherFilters(rawFilter);
 
-  try {
-    const courses = await models.Course.findAll({
-      attributes: ["id"],
-      where: courseFilter,
-      include: otherFilters,
-    });
-    return courses.map(({ id }) => id);
-  } catch (err) {
-    console.error(err);
-  }
+  console.log(courseFilter);
+  // try {
+  const courses = await models.Course.findAll({
+    attributes: ["id"],
+    where: courseFilter,
+    include: otherFilters,
+  });
+  console.log(sanitize(courses));
+  return courses.map(({ id }) => id);
+  // } catch (err) {
+  //   console.error(err);
+  // }
 
   // console.log(courses);
   // return courses.map(({ id }) => id);
