@@ -1,21 +1,21 @@
 <div class="p-5 mb-4 bg-light rounded-3">
-  <h2>Welcome {{user.student.student_name}}, are you buzzing to get started?</h2>
+  <h2>Welcome, {{user.student.student_name}}! Are you buzzing to get started?</h2>
   <div class="d-flex justify-content-end">
     <div class="mx-2">
       {{#> buttonYellow }}
-        <a class="text-decoration-none text-dark" href="/results">Search for more workouts</a>
+        <a class="text-decoration-none text-dark" href="/results">Add Workouts</a>
       {{/buttonYellow}}
     </div>
     <div>
       <button id="btn-delete-user" type="button" class="btn btn-dark" 
         data-user-id="{{user.id}}">
-        Delete account
+        Delete Account
       </button>
     </div>
   </div>
 </div>
 
-<h2 class="text-center pb-5">Your saved workouts</h2>
+<h2 class="text-center pb-5">My Workouts</h2>
 <div
   class="
     container-fluid
