@@ -21,7 +21,14 @@
       data-course-id="{{id}}">
       Update
     </button>
-    <a href="#" class="btn btn-danger mt-2">Delete</a>
-    <a href="#" class="btn btn-success mt-2">Current Students</a>
+    <button type="button" class="btn btn-danger btn-delete-course mt-2" 
+      data-course-id="{{id}}">
+      Delete
+    </button>
+    <button type="button" class="btn btn-success btn-course-student mt-2" 
+      data-bs-toggle="modal" data-bs-target="#course-student-modal" 
+      data-course-id="{{id}}">
+      Current Students
+    </button>
   </div>
 </div>
