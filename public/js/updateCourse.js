@@ -41,8 +41,10 @@ const updateCourse = async (event) => {
     const result = otherInputs.reduce((acc, input) => {
       const key = input.name;
       const value = getInputValue(input);
-      return value ? { ...acc, [key]: value } : { ...acc };
+      return { ...acc, [key]: value };
     }, {});
+
+    console.log(result);
     return result;
   };
 
