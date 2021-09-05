@@ -37,6 +37,7 @@ const createAccount = async (req, res) => {
     const cleanedUser = sanitize(rawUser);
     saveLogin(req, res, cleanedUser);
   } catch (err) {
+    console.error(err);
     res.status(500).json(err);
   }
 };

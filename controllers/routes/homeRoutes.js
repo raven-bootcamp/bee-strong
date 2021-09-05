@@ -94,7 +94,8 @@ const renderInstructorPage = async (req, res) => {
 
 // redirect user to correct
 const redirectToDashboard = async (req, res) => {
-  const isStudent = req.session.user.student ? true : false;
+  const isStudent = req.session.user.student;
+  console.log(isStudent);
   if (isStudent) {
     res.redirect("/student");
   } else {
