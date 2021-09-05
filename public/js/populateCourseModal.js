@@ -7,7 +7,6 @@ const populateUpdateCourseModal = async (event) => {
     const tagIds = tags.map(({ id }) => id);
     const tagInputs = inputs.filter(({ name }) => name === "tags");
     tagInputs.forEach((input) => {
-      console.log(input.value);
       input.checked = tagIds.includes(parseInt(input.value)) ? true : false;
     });
   };
