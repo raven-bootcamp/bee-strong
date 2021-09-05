@@ -5,7 +5,7 @@ const searchByTag = async (event) => {
   // check that it is search button
   if (!event.target.classList.contains("btn-search")) return;
   const tagName = event.target.getAttribute("data-tag-name");
-  document.location.replace(`/results?tag_name=${tagName}`);
+  document.location.replace(`/results?active=true&tag_name=${tagName}`);
 };
 
 document.getElementById("search-bar").addEventListener("click", searchByTag);
