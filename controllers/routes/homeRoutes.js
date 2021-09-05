@@ -54,15 +54,15 @@ const renderStudentPage = async (req, res) => {
   const filter = { student_id: req.session.user.student.id };
   const rawCourses = await services.course.getAll(filter);
   const courses = sanitize(rawCourses);
-  const ifNosavedCourses = courses.length;
-  
-  
+  const ifNosavedCourses = (courses.length=0) ? "Saved workouts" : "No saved workouts";
+     
     try {
     res.render("student", {
       loggedIn: req.session.logged_in,
       user: req.session.user,
       courses: courses,
       ifNosavedCourses: ifNosavedCourses,
+            
     });
   } catch (err) {
     res.status(500).json(err);
