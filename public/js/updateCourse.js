@@ -27,17 +27,37 @@ const updateCourse = async (event) => {
     return input.value.trim();
   };
 
+  // get tag data
+  const getTagData = (tagInputs) => {
+    const result = tagInputs.reduce((acc, input) => {
+      if (input.checked) return [...acc, input.value];
+      return [...acc];
+    }, []);
+    return result;
+  };
+
+  // get data from other fields
+  const getOtherData = (otherInputs) => {
+    const result = otherInputs.reduce((acc, input) => {
+      const key = input.name;
+      const value = getInputValue(input);
+      return value ? { ...acc, [key]: value } : { ...acc };
+    }, {});
+    return result;
+  };
+
   // get input data
   const getInputdata = (form) => {
     const inputs = form.querySelectorAll("input");
-    const result = [...inputs].reduce((acc, input) => {
-      if (input.hasAttribute("name")) {
-        const key = input.name;
-        const value = getInputValue(input);
-        return value ? { ...acc, [key]: value } : { ...acc };
-      }
-      return { ...acc };
-    }, {});
+    const dataInputs = [...inputs].filter((input) =>
+      input.hasAttribute("name")
+    );
+    const tagInputs = dataInputs.filter(({ name }) => name === "tags");
+    const otherInputs = dataInputs.filter(({ name }) => name !== "tags");
+
+    const tagData = getTagData(tagInputs);
+    const otherData = getOtherData(otherInputs);
+    const result = { ...otherData, tags: tagData };
     return result;
   };
 

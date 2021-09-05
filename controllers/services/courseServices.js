@@ -34,14 +34,12 @@ const getFilteredIds = async (rawFilter) => {
   const courseFilter = filterObjectByKeys(acceptedKeys, rawFilter);
   const otherFilters = getOtherFilters(rawFilter);
 
-  console.log("\ncourse services : ", otherFilters);
   try {
     const courses = await models.Course.findAll({
       attributes: ["id"],
       where: courseFilter,
       include: otherFilters,
     });
-    console.log(courses);
     return courses.map(({ id }) => id);
   } catch (err) {
     console.error(err);
