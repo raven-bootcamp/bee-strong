@@ -2,10 +2,16 @@
   <h2>Welcome, {{user.instructor.instructor_name}}! </h2>
 
   <div class="d-flex justify-content-end">
-    <button type="button" class="btn btn-warning" 
+    <button type="button" class="btn btn-warning mx-2" 
       data-bs-toggle="modal" data-bs-target="#course-update-modal">
       Add Content
     </button>
+    <div>
+      <button id="btn-delete-user" type="button" class="btn btn-dark" 
+        data-user-id="{{user.id}}">
+        Delete Account
+      </button>
+    </div>
   </div>
 </div>
 
@@ -35,3 +41,4 @@
 <script src="/js/populateCourseModal.js"></script>
 <script src="/js/populateStudentListModal.js"></script>
 <script src="/js/deleteCourse.js"></script>
+<script src="/js/deleteAccount.js"></script>
