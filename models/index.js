@@ -11,11 +11,15 @@ User.hasOne(Student);
 Student.belongsTo(User);
 
 // user - Instructor
-User.hasOne(Instructor);
+User.hasOne(Instructor, {
+  onDelete: "CASCADE",
+});
 Instructor.belongsTo(User);
 
 // instructor - course
-Instructor.hasMany(Course);
+Instructor.hasMany(Course, {
+  onDelete: "CASCADE",
+});
 Course.belongsTo(Instructor);
 
 // course - student
